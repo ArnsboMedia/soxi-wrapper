@@ -7,50 +7,53 @@ module Soxi
       end
 
       def filetype
-        @filetype ||= run 't'
+        @filetype ||= run('t')
       end
 
       def samplerate
-        @samplerate ||= run 'r'
+        @samplerate ||= run('r')
       end
 
       def channels
-        @channels ||= run 'c'
+        @channels ||= run('c').to_i
       end
 
       def samples
-        @samples ||= run 's'
+        @samples ||= run('s').to_i
       end
 
       def duration
-        @duration ||= run 'd'
+        @duration ||= run('d')
       end
 
       def seconds
-        @seconds ||= run 'D'
+        @seconds ||= run('D').to_f
       end
 
-
       def bits_per_sample
-        @bits_per_sample ||= run 'b'
+        @bits_per_sample ||= run('b').to_i
       end
 
       def average_bitrate
-        @average_bitrate ||= run 'B'
+        @average_bitrate ||= run('B')
       end
 
       def encoding
-        @encoding ||= run 'e'
+        @encoding ||= run('e')
       end
 
       def comments
-        @comments ||= run 'a'
+        @comments ||= run('a', false)
       end
 
       private
 
-      def run option
-        `soxy -#{option} #{filename}`.gsub(/\n/,'')
+      def run option, remove_newlines=true
+        val = `soxi -#{option} #{filename}`
+        if remove_newlines
+          return val.gsub(/\n/,'')
+        end
+        val
       end
     end
   end
