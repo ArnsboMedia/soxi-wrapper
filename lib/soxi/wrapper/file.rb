@@ -49,11 +49,14 @@ module Soxi
       private
 
       def run option, remove_newlines=true
-        val = `soxi -#{option} #{filename}`
-        if remove_newlines
-          return val.gsub(/\n/,'')
+        val, std_err, status = Open3.capture3('soxi', "-#{option}", filename)
+
+        if status.success?
+          val.gsub!(/\n/,'') if remove_newlines
+          return val
+        else
+          puts "Received error status #{status.exitstatus} from soxi with message: #{std_err}"
         end
-        val
       end
     end
   end

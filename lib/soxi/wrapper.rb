@@ -1,5 +1,6 @@
 require "soxi/wrapper/version"
 require "soxi/wrapper/file"
+require 'open3'
 
 module Soxi
   module Wrapper
