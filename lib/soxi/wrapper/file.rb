@@ -1,3 +1,6 @@
+require 'open3'
+require "soxi/wrapper/soxi_failed_error"
+
 module Soxi
   module Wrapper
     class File
@@ -43,17 +46,28 @@ module Soxi
       end
 
       def comments
-        @comments ||= run('a', false)
+        @comments ||= run_multiline('a')
       end
 
       private
 
-      def run option, remove_newlines=true
-        val = `soxi -#{option} #{filename}`
-        if remove_newlines
-          return val.gsub(/\n/,'')
-        end
-        val
+      def run_multiline(option)
+        run_soxi(option)
+      end
+
+      def run(option)
+        run_soxi(option).delete("\n")
+      end
+
+      def run_soxi(option)
+        val, std_err, status = Open3.capture3('soxi', "-#{option}", filename)
+        return val if status.success?
+        raise SoxiFailedError.new(
+          std_err: std_err,
+          std_out: val,
+          option: option,
+          filename: filename
+        )
       end
     end
   end

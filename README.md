@@ -1,10 +1,12 @@
 # Soxi::Wrapper
 
-TODO: Write a gem description
+This very simple wrapper has been abandonned. We haven't used it in years.
+
+We have upgraded this to ensure we don't publish unsafe code (based on work by @tomekr on https://github.com/ArnsboMedia/soxi-wrapper/pull/1)
 
 ## Installation
 
-Add this line to your application's Gemfile:
+If you must:
 
     gem 'soxi-wrapper'
 
@@ -16,14 +18,6 @@ Or install it yourself as:
 
     $ gem install soxi-wrapper
 
-## Usage
-
-TODO: Write usage instructions here
-
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+We have abandonned this.
