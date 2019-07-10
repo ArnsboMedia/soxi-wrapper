@@ -1,6 +1,6 @@
 # Soxi::Wrapper
 
-This very simple wrapper has been abandonned. We haven't used it in years.
+This very simple wrapper has been abandoned. We haven't used it in years.
 
 We have upgraded this to ensure we don't publish unsafe code (based on work by @tomekr on https://github.com/ArnsboMedia/soxi-wrapper/pull/1)
 
